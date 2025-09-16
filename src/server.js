@@ -26,6 +26,8 @@ import http from "node:http";
 
 // Cabeçalhos (Headers) - Metadados da requisição ou resposta
 
+// HTTP Status Code - Código de status da resposta
+
 const users = [];
 
 const server = http.createServer((req, res) => {
@@ -41,10 +43,10 @@ const server = http.createServer((req, res) => {
   if (method === "POST" && url === "/users") {
     users.push({ id: 1, name: "John Doe", email: "johndoe@example.com" });
 
-    return res.end("Criação de usuário");
+    return res.writeHead(201).end();
   }
 
-  return res.end("Hello World!");
+  return res.writeHead(404).end();
 });
 
 server.listen(3333);
